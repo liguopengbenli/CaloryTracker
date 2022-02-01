@@ -1,4 +1,4 @@
-package com.example.tracker_data.dto
+package com.example.tracker_data.remote.dto
 
 import com.squareup.moshi.Json
 
