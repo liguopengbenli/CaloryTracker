@@ -16,20 +16,13 @@ import com.example.tracker_presentation.tracker_overview.components.*
 
 @Composable
 fun TrackerOverViewScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNavigateToSearch: (String, Int, Int, Int) -> Unit,
     viewmodel: TrackerOverviewViewmodel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
     val state = viewmodel.state
     val context = LocalContext.current
-    LaunchedEffect(key1 = context) {
-        viewmodel.uiEvent.collect { event ->
-            when (event) {
-                is UiEvent.Navigate -> onNavigate(event)
-                else -> Unit
-            }
-        }
-    }
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -74,7 +67,14 @@ fun TrackerOverViewScreen(
                                 id = R.string.add_meal,
                                 meal.name.asString(context)
                             ),
-                            onClick = { viewmodel.onEvent(TrackerOverviewEvent.OnAddFoodClick(meal)) },
+                            onClick = {
+                                onNavigateToSearch(
+                                    meal.name.asString(context),
+                                    state.date.dayOfMonth,
+                                    state.date.monthValue,
+                                    state.date.year
+                                )
+                            },
                             modifier = Modifier.fillMaxWidth()
                         )
                     }

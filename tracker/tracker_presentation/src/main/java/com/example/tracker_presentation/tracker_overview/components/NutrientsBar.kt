@@ -45,7 +45,7 @@ fun NutrientsBar(
     }
     LaunchedEffect(key1 = fat) {
         fatWidthRatio.animateTo(
-            targetValue = ((fat * 4f) / calorieGoal)
+            targetValue = ((fat * 9f) / calorieGoal)
         )
     }
     Canvas(modifier = modifier) {
