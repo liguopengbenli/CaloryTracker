@@ -15,7 +15,8 @@ fun TrackedFoodEntity.toTrackFood(): TrackedFood {
         mealType = MealType.fromString(type),
         amount = amount,
         date = LocalDate.of(year, month, dayOfMonth),
-        calories = calories
+        calories = calories,
+        id = id
     )
 }
 

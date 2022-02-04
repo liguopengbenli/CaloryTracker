@@ -12,8 +12,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.core.R
-import com.example.core.domain.model.ActivityLevel
-import com.example.core.domain.model.Gender
 import com.example.core.domain.model.GoalType
 import com.example.core.util.UiEvent
 import com.example.core_ui.LocalSpacing

@@ -44,8 +44,6 @@ fun SearchScreen(
     LaunchedEffect(key1 = keyboardController) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> {
-                }
                 is UiEvent.NavigateUp -> onNavigateUp()
                 is UiEvent.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
@@ -53,6 +51,7 @@ fun SearchScreen(
                     )
                     keyboardController?.hide()
                 }
+                else -> Unit
             }
         }
     }
@@ -73,7 +72,11 @@ fun SearchScreen(
             onValueChange = {
                 viewModel.onEvent(SearchEvent.OnQueryChange(it))
             },
-            onSearch = { viewModel.onEvent(SearchEvent.OnSearch) },
+            shouldShowHint = state.isHintVisible,
+            onSearch = {
+                viewModel.onEvent(SearchEvent.OnSearch)
+                keyboardController?.hide()
+            },
             onFocusChanged = {
                 viewModel.onEvent(SearchEvent.OnSearchFocusChange(it.isFocused))
             }
@@ -96,6 +99,7 @@ fun SearchScreen(
                         )
                     },
                     onTrack = {
+                        keyboardController?.hide()
                         viewModel.onEvent(
                             SearchEvent.OnTrackFoodClick(
                                 food = food.food,

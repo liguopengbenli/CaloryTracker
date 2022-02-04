@@ -10,7 +10,6 @@ import com.example.tracker_domain.model.TrackedFood
 import com.example.tracker_domain.repository.TrackerRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.lang.Exception
 import java.time.LocalDate
 
 class TrackerRepositoryImpl(
